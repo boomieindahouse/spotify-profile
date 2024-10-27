@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Sidebar from './components/Sidebar';
 import Profile from './components/Profile';
+import LoginScreen from './components/LoginScreen';
 
 function App() {
     const [profileData, setProfileData] = useState(null);
@@ -27,11 +27,10 @@ function App() {
 
     return (
         <div className="App">
-            <Sidebar />
             {profileData ? (
                 <Profile data={profileData} />
             ) : (
-                <a href="http://localhost:3000/login" className="btn btn-primary">Login with Spotify</a>
+                <LoginScreen />
             )}
         </div>
     );

@@ -1,11 +1,27 @@
-const Profile = () => {
-    // โค้ดสำหรับการแสดงโปรไฟล์
+import PropTypes from 'prop-types';
+
+const Profile = ({ data }) => {
     return (
-        <div>
-            <h1>Profile Page</h1>
-            {/* แสดงข้อมูลโปรไฟล์ที่นี่ */}
+        <div className="profile">
+            <h1>This is User Profile</h1>
+            <h1>{data.display_name}</h1>
+            <img src={data.images[0]?.url} alt={data.display_name} />
+            <p>Email: {data.email}</p>
         </div>
     );
 };
 
-export default Profile; // ตรวจสอบว่ามีการส่งออกเป็น default
+// ตรวจสอบประเภทของ props
+Profile.propTypes = {
+    data: PropTypes.shape({
+        display_name: PropTypes.string.isRequired,
+        images: PropTypes.arrayOf(
+            PropTypes.shape({
+                url: PropTypes.string.isRequired,
+            })
+        ),
+        email: PropTypes.string.isRequired,
+    }).isRequired,
+};
+
+export default Profile;
